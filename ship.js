@@ -1,13 +1,12 @@
-
-console.log("This is the place of the ship class and all it's methods")
-
 class Ship {
     hitTimes = 0;
     constructor(length) {
         this.length = length;
     }
     hit() {
-        this.hitTimes++;
+        if(this.hitTimes < this.length) {
+            this.hitTimes++;
+        }
     }
     isSunk() {
         if(this.hitTimes == this.length) {
@@ -16,3 +15,4 @@ class Ship {
         return false;
     }
 }
+module.exports = Ship;
