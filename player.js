@@ -1,1 +1,10 @@
-console.log("This is the place of the player class and all it's methods")
+const Gameboard = require('./gameboard')
+
+class Player { 
+    constructor(name, type) {
+        this.name = name;
+        this.type = type;
+        this.gameboard = new Gameboard();
+    }
+}
+module.exports = Player
