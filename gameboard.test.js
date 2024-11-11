@@ -30,9 +30,22 @@ test("Ship with length 2 is added correctly", () => {
     expect(myGameboard.boardMatrix[1][1]).toBe(undefined)
     expect(myGameboard.boardMatrix[4][1]).toBe(undefined)
     expect(myGameboard.boardMatrix[3][1].hitTimes).toBe(0)
+})
+
+test("Ships receive attacks correctly and are sunk when received enough hits", () => {
     myGameboard.receiveAttack(3, 1)
     expect(myGameboard.boardMatrix[3][1].hitTimes).toBe(1)
     expect(myGameboard.boardMatrix[3][1].isSunk()).toBe(false)
     myGameboard.receiveAttack(2, 1)
     expect(myGameboard.boardMatrix[3][1].isSunk()).toBe(true)
 })
+
+test("Ship is added correctly on column", () => {
+    myGameboard.addShip(5, 5, 3, "col");
+    expect(typeof myGameboard.boardMatrix[5][5]).toBe('object')
+    expect(myGameboard.boardMatrix[5][5].length).toBe(3)
+    expect(myGameboard.boardMatrix[5][6].length).toBe(3)
+    expect(myGameboard.boardMatrix[5][7].length).toBe(3)
+    expect(myGameboard.boardMatrix[5][8]).toBe(undefined)
+
+}) 
