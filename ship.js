@@ -1,4 +1,5 @@
-class Ship {
+
+export class Ship {
     hitTimes = 0;
     constructor(length) {
         this.length = length;
@@ -15,4 +16,4 @@ class Ship {
         return false;
     }
 }
-module.exports = Ship;
+// module.exports = Ship;
