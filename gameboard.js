@@ -97,9 +97,11 @@ export class Gameboard {
                 }
 
             }
+            return true;
         } else {
             this.hitMatrix[x][y] = 'm'
             this.missed++;
+            return false;
         }
     }
     allSunk() {
