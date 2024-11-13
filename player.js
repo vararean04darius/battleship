@@ -6,6 +6,13 @@ export class Player {
         this.name = name;
         this.type = type;
         this.gameboard = new Gameboard();
+        this.moves = 0;
+    }
+    addMove() {
+        this.moves++;
+    }
+    removeMove() {
+        this.moves--;
     }
 }
 // module.exports = Player
