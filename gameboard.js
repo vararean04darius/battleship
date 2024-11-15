@@ -15,6 +15,10 @@ export class Gameboard {
         for(let i = 0; i < this.hitMatrix.length; i++) {
             this.hitMatrix[i] = new Array(10);
         }
+        this.enemyMatrix = new Array(10);
+        for(let i = 0; i < this.enemyMatrix.length; i++) {
+            this.enemyMatrix[i] = new Array(10);
+        }
     }
 
     addShip(x, y, length, direction) {   
