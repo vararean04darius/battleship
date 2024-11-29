@@ -3,7 +3,7 @@ import { Ship } from "./ship.js";
 
 
 export class Gameboard {
-    constructor() {
+    constructor( type ) {
         this.ships = [];
         this.sunk = 0;
         this.missed = 0;
@@ -15,9 +15,11 @@ export class Gameboard {
         for(let i = 0; i < this.hitMatrix.length; i++) {
             this.hitMatrix[i] = new Array(10);
         }
-        this.enemyMatrix = new Array(10);
-        for(let i = 0; i < this.enemyMatrix.length; i++) {
-            this.enemyMatrix[i] = new Array(10);
+        if(type == "computer") {
+            this.enemyMatrix = new Array(10);
+            for(let i = 0; i < this.enemyMatrix.length; i++) {
+                this.enemyMatrix[i] = new Array(10);
+            }
         }
     }
 
