@@ -6,7 +6,28 @@
     <title>Battleship</title>
 </head>
 <body>
-    <div id="container"></div>
-    <script src="battleboard.js"></script>
+    <div id="topbar">
+        <div id="hide">Put your mouse here when your turn is over</div>
+        <div id="buttons-container">
+            <button id="start-game">When name is set, press this to get into board positioning.</button>
+            <button id="reset">RESET</button>
+        </div>
+        <div id="names">
+            <input type="text" name="player-name" id="first-player-input" minlength="3" required>
+            <input type="text" name="player-name" id="second-player-input" placeholder="if empty, player vs computer">
+        </div>
+    </div>
+    <div id="container">
+        <div id="rules">
+            <h1>Rules:</h1>
+            <h3>There must be at least 1 square between ships, the ships can't be placed one near the other.</h3>
+            <h3>If you hit part of a ship, the outer diagonals will be confirmed empty.</h3>
+            <h3>If you break the ship entirely, all space surrounding the ship will be confirmed empty.</h3>
+            <h3>If you want to play against computer, leave the second name empty.</h3>
+            <h3>In positioning mode, the place you drop the ship is the place where the first 'square' will be placed.</h3>
+        </div>
+        <button id="finish-selection" disabled style="display: none;">Confirm</button>
+    </div>
+    <script type="module" src="./main.js"></script>
 </body>
 </html>

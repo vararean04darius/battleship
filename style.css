@@ -3,18 +3,314 @@ body, html {
     margin: 0;
 }
 
-#container {
-    height: 100vh;
-    width: 100vw;
-    background-color: beige;
+#rules {
+    height: 50vh;
+    width: 50vw;
+    text-align: center;
+    color: white;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#hide {
+    background-color: blueviolet;
+    color: white;
+    padding: 1em;
+    border-radius: 1em;
+    position: absolute;
+    display: none;
+}
+
+#reset {
+    padding: 1em;
+    background-color: azure;
+    color: black;
+    display: none;
+    width: 60%;
+    border-radius: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+#reset:hover {
+    background-color: bisque;
+}
+
+#topbar {
+    height: 15vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 13, 48, 0.849);
+}
+
+#buttons-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#finish-selection {
+    padding: 1em;
+    background-color: white;
+    color: black;
+    border-radius: 1em;
+}
+
+#finish-selection:enabled {
+    background-color: rgb(181, 224, 164);
+}
+
+#finish-selection:disabled {
+    background-color: rgb(250, 177, 177);
+}
+
+#finish-selection:disabled:hover{
+    background-color: darkred;
+}
+
+#finish-selection:enabled:hover{
+    background-color: greenyellow;
+}
+
+input {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    border-radius: 0.5em;
+    text-align: center;
+}
+
+#container {
+    height: 85vh;
+    width: 100vw;
+    background-color: rgba(0, 13, 48, 0.774);
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-#table-holder {
-    background-color: white;
+#start-game {
+    background-color: rgba(0, 255, 13, 0.3);
+    color: black;
     border-radius: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+#start-game:enabled:active {
+    background-color: rgba(0, 255, 13, 0.7);
+}
+
+#positioning-board {
+    background-color: darkolivegreen;
+    height: 50vh;
+    width: 50vw;
+    min-width: 800px;
+    min-height: 600px;
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 0.5fr;
+    grid-template-rows: 1fr 1fr;
+    border-radius: 1em;
+    position: relative;
+    padding: 6em;
+    padding-bottom: 4em;
+    align-items: center;
+    justify-items: center;
+    row-gap: 2.5em;
+    overflow: hidden;
+    /* inline-size: min-content; */
+}
+
+#player-name{
+    user-select: none;
+    text-align: center;
+    font-size: 2em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(255, 255, 255);
+    margin: 0;
+    /* overflow: hidden; */
+}
+
+#name-container {
+    grid-row: 3/4;
+    grid-column: 2/3;
+    height: 5em;
+    width: 20em;
+    align-items: center;
+    justify-items: center;
+    /* playerName.style.gridRow = "3/4";
+    playerName.style.gridColumn = "2/3"; */
+}
+
+.quarter {
+    width: 100%;
+    height: 100%;
+    background-color: lightgray;
+    border: solid 1px black;
+    border-radius: 1em;
+}
+
+#long-piece-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+}
+
+.long-piece-vertical {
+    width: 2em;
+    height: 8.4em;
+    background-color: rgb(88, 69, 104);
+}
+
+.long-piece-horizontal {
+    width: 8.4em;
+    height: 2em;
+    background-color: rgb(88, 69, 104);
+}
+
+#three-piece-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+    padding: 1em;
+    border-radius: 1em;
+}
+
+.three-piece-vertical {
+    width: 2em;
+    height: 6.3em;
+    background-color: rgb(88, 69, 104);
+}
+.three-piece-horizontal {
+    width: 6.3em;
+    height: 2em;
+    background-color: rgb(88, 69, 104);
+}
+
+#two-piece-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+    gap: 2em;
+}
+
+.two-piece-horizontal {
+    width: 4.1em;
+    height: 2em;
+    background-color: rgb(88, 69, 104);
+}
+
+.two-piece-vertical {
+    width: 2em;
+    height: 4.15em;
+    background-color: rgb(88, 69, 104);
+}
+
+#one-piece-container {
+    display: grid;
+    padding: 1em;
+    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    gap: 2em;
+}
+
+.one-piece {
+    width: 2em;
+    height: 2em;
+    background-color: rgb(88, 69, 104);
+}
+
+#board-container {
+    position: relative;
+    padding: 0.5em;
+    background-color: black;
+    border-radius: 0.3em;
+    grid-row: 1/3;
+    grid-column: 2/3;
+}
+
+.ship {
+    background-color: black;
+    position: relative;
+    z-index: 10;
+}
+
+.rotated {
+    transform-origin: 1em 1em;
+    transform: rotate(90deg);
+}
+
+#the-board {
+    width: 21.2em;
+    height: 21.2em;
+    background-color: lightgray;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    align-items: center;
+    justify-items: center;
+}
+
+.cell {
+    height: 2em;
+    width: 2em;
+    border: solid black 0.1em;
+    background-color: white;
+    overflow: visible;
+    z-index: 5;
+    position: relative;
+    user-select: none;
+}
+
+.head {
+    user-select: none;
+    position: relative;
+}
+
+.occupied {
+    user-select: none;
+    background-color: transparent;
+    border-color: black;
+}
+
+.adjacent {
+    user-select: none;
+}
+
+#names {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    gap: 25em;
+    margin: 2em;
+}
+
+#land-holder {
+    background-color: rgb(35, 55, 61);
+    color: white;
+    font-size: large;
+    border-radius: 1.15em;
     border-style: solid;
     border-width: 1px;
     border-color: black;
@@ -24,22 +320,108 @@ body, html {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    animation: ease-in 200ms;
 }
 
-.table{
-    display: flex;
+.land{
     height: 100%;
     width: 100%;
+    display: grid;
+    align-items: center;
+    justify-items: center;
 }
 .player1{
-    background-color: rgba(135, 206, 250, 0.26);
-    border-right: solid 1px;
-    border-right-color: black;
-    border-top-left-radius: 1em;
-    border-bottom-left-radius: 1em;
+    background-color: rgb(1, 1, 100, 0.3);
+    /* border-right: black solid 1em; */
+    border-radius: 1em;
 }
 .player2{
-    background-color: rgba(240, 128, 128, 0.26);
-    border-top-right-radius: 1em;
-    border-bottom-right-radius: 1em;
+    background-color: rgba(100, 1, 1, 0.3);
+    border-radius: 1em;
+}
+.board{
+    display: grid;
+    height: 400px;
+    width: 400px;
+    border-radius: 0.5em;
+    /* background-color: lightblue; */
+}
+#player1-board{ 
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    padding: 0.5em;
+    gap: 2px;
+}
+#player2-board{
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    padding: 0.5em;
+    gap: 2px;
+}
+
+button{
+    background-color: rgb(51, 59, 71);
+    color: aliceblue;
+    border: solid black 1px;
+    padding: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: large;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+button:hover:enabled{
+    background-color: rgb(118, 146, 184);
+}
+button:active:enabled{
+    background-color: rgb(66, 90, 124);
+}
+.alive{
+    background-color: green;
+}
+.hit{
+    background-color: rgba(220, 20, 60, 0.75);
+}
+.missed{
+    color: white;
+    background-color: rgba(255, 176, 176, 0.25)
+}
+.confirmed {
+    color: rgba(255, 255, 255, 0.432); 
+    background-color: rgba(255, 176, 176, 0.25)
+}
+.miniature {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    height: 150px;
+    width: 150px;
+    background-color: rgb(43, 6, 6);
+}
+.preview{
+    background-color: rgb(184, 184, 184);
+}
+.game-ended{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-items: center;
+}
+.display{
+    background-color: darkslategray;
+    color: white;
+    padding: 1em;
+    border-radius: 1em;
+    border: solid white 1px;
+}
+.active{
+    background-color: black;
+}
+
+.hidden{ 
+    display: none;
 }
