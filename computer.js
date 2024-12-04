@@ -30,10 +30,8 @@ export function generateCoordinatesForAttack(player1) {
 const timer = ms => new Promise(res => setTimeout(res, ms))
 
 export async function computerPlayRound() {
-    console.log("computerPlayRound called");
     let computer = getCurrentPlayerRound();
     let player = getCurrentEnemy();
-    console.log(computer);
     let timePerMove = 350;
     while(computer.moves > 0) {
         await timer(timePerMove);
@@ -109,8 +107,7 @@ export function computerPositionShips() {
             computerShipsArray[i][j] = 0;
         }
     }
-    // let remainingShips = [4, 3, 3, 2, 2, 2, 1, 1, 1, 1];
-    let remainingShips = [4];
+    let remainingShips = [4, 3, 3, 2, 2, 2, 1, 1, 1, 1];
     while(remainingShips.length) {
         let currLength = remainingShips.shift();
         let result = generateCoordinatesForPlacement(currLength, computerShipsArray);
@@ -118,7 +115,6 @@ export function computerPositionShips() {
         let y = result[1];
         let dir = result[2];
         addObjectAndAdjacent(x, y, currLength, dir, computerShipsArray);
-        // computerShipsArray[x][y] = [currLength, dir];
     }
     return computerShipsArray;
 }

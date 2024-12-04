@@ -142,11 +142,7 @@ function addMiniature(miniature, player) {
 }
 
 export function reloadCurrentBoard() {
-    console.log("inside reloadCurrentBoard");
-    let currentPlayer = getCurrentPlayerRound();
     let myBoard = getCurrentBoard();
-    console.log(myBoard);
-    // let table = myBoard.parentElement;
     while(myBoard.children.length > 0) {
         myBoard.removeChild(myBoard.lastChild)
     }
@@ -203,17 +199,6 @@ export function switchBoards(arr) {
     let enem = getEnemyBoard();
     disableBoard(enem);
     enableBoard(curr);
-    // if(arr[0].classList.contains("active")) {
-    //     disableBoard(arr[0])
-    //     // arr[0].parentElement.classList.add("hidden")
-    //     enableBoard(arr[1])
-    //     // arr[1].parentElement.classList.remove("hidden")
-    // } else {
-    //     disableBoard(arr[1])
-    //     // arr[1].parentElement.classList.add("hidden")
-    //     enableBoard(arr[0]);
-    //     // arr[0].parentElement.classList.remove("hidden")
-    // }
 }
 export function stopGame(winner) {
     disableBoard(getCurrentBoard())
@@ -296,14 +281,8 @@ document.getElementById("finish-selection").addEventListener("click", () => {
         
         if(currentPlayersArray.length == 1) {
             resetShipsArray();
-            console.log("finalPlayers before ending");
-            console.log(finalPlayers);
-            
             endPositioningAndStartGame(finalPlayers);
-            // resetFinalArray();
             currentPlayersArray = [];
-            console.log("finalPlayers after ending");
-            console.log(finalPlayers);
         } else {
             currentPlayersArray.shift()
             deletePositioningBoard();
@@ -350,13 +329,6 @@ resetButton.addEventListener("click", () => {
     if(document.getElementById("game-ended")) {
         document.getElementById("game-ended").parentElement.removeChild(document.getElementById("game-ended"));
     }
-    // this should also reset the shipsArray and finalArray for positioning mode
-    // const table = document.getElementById("table-holder");
-    // let elems = Array.from(table.children);
-    // for(let i = 0; i < elems.length; i++ ) {
-    //     table.removeChild(table.firstChild)
-    // }
-    // table.parentElement.removeChild(table.parentElement.lastChild)
     showInputsAndStartButton();
     if(document.getElementById("winner-display")) {
         document.getElementById("winner-display").style.display = "none";
@@ -375,14 +347,12 @@ export function showInputsAndStartButton(){
     const firstName = document.getElementById("first-player-input");
     const secondName = document.getElementById("second-player-input")
     const startButton = document.getElementById("start-game")
-    // const topbar = document.getElementById("topbar")
     firstName.style.display = "block";
     secondName.style.display = "block";
     startButton.style.display = "block";
     if(document.getElementById("rules")) {
         rules.style.display = "flex";
     }
-    // topbar.style.display = "flex";
 }
 
 const firstName = document.getElementById("first-player-input");
@@ -391,20 +361,14 @@ const startButton = document.getElementById("start-game")
 startButton.addEventListener("click", () => { 
     hideInputsAndStartButton();
     resetFinalArray();
-    // boardPositioning(firstName.value, secondName.value);
     startPositioning([firstName.value, secondName.value])
-    // initialise(firstName.value, secondName.value);
 });
 export function makePositioningBoardVisible(playersArr) {
-    //should also make confirm button visible
     document.getElementById("positioning-board").style.display = "grid";
     document.getElementById("player-name").textContent = playersArr[0];
     for(let i = 0; i< playersArr.length; i++) {
         currentPlayersArray[i] = playersArr[i];
     }
-    // currentPlayersArray = playersArr;
-    console.log(finalPlayers);
-    console.log(currentPlayersArray);
 }
 
 export function computerRound(board) {
@@ -429,19 +393,11 @@ function resetShipsArray() {
     for(let i=0; i< 10; i++) {
         for(let j= 0; j< 10; j++) {
             shipsArray[i][j] = 0;
-            // let cell = document.getElementById("cell-"+i+"-"+j)
-            // if(cell.children.length) {
-            //     for(let i = 0; i < cell.children.length; i++) {
-            //         cell.removeChild(cell.lastChild);
-            //     }
-            // }
-            // cell.classList.remove("adjacent", "head", "occupied");
         }
     }
 }
 
 function rotatePiece(elem) {
-    console.log("in rotate piece, elementul este :");
     let coords = getXandYfromId(elem.parentElement.id)
     let currX = parseInt(coords[0]);
     let currY = parseInt(coords[1]);
@@ -511,7 +467,6 @@ function createPiece(length, quarterForAppending) {
 
 function addClick(element) {
     element.addEventListener("click", (event) => {
-        console.log(event.target.parentElement);
         if(checkRotation(event.target.parentElement)) {
             rotatePiece(event.target);
         }
@@ -578,7 +533,6 @@ function checkRotation(cell) {
                         return false;
                     }
                 } else if( shipsArray[currX + i][currY] != 0) {
-                    console.log(shipsArray[currX+1 + i][currY]);
                     return false;
                 }
             } else {
@@ -590,11 +544,9 @@ function checkRotation(cell) {
 }
 
 export function createPositioningBoard() {
-    
     let positioningBoard = document.createElement("div")
     positioningBoard.id = "positioning-board";
     container.appendChild(positioningBoard);
-    // let positioningBoard = document.getElementById("positioning-board");
 
     const nameContainer = document.createElement("div") //name
     nameContainer.id = "name-container"
@@ -613,19 +565,19 @@ export function createPositioningBoard() {
     const threePieceQuarter = document.createElement("div") // 3square piece quarter x2
     threePieceQuarter.classList.add("quarter");
     threePieceQuarter.id = "three-piece-container"
-    // createPiece(3, threePieceQuarter);
+    createPiece(3, threePieceQuarter);
     positioningBoard.appendChild(threePieceQuarter)
 
     const twoPieceQuarter = document.createElement("div") // 2square piece quarter x3
     twoPieceQuarter.classList.add("quarter");
     twoPieceQuarter.id = "two-piece-container"
-    // createPiece(2, twoPieceQuarter);
+    createPiece(2, twoPieceQuarter);
     positioningBoard.appendChild(twoPieceQuarter)
 
     const onePieceQuarter = document.createElement("div") // 1square piece quarter x4
     onePieceQuarter.classList.add("quarter");
     onePieceQuarter.id = "one-piece-container"  
-    // createPiece(1, onePieceQuarter);
+    createPiece(1, onePieceQuarter);
     positioningBoard.appendChild(onePieceQuarter)
 
     const pieceBoard = document.createElement("div")    // board for placing the pieces
@@ -645,7 +597,6 @@ export function createPositioningBoard() {
             })
             newCell.addEventListener("drop", (event) => {
                 drop(event, i, j);
-                console.log(shipsArray);
             })
         }
     }
@@ -783,16 +734,12 @@ function getXandYfromId(currId) {
 }
 
 function drop(ev, x, y) {
-    console.log(ev);
-    
     ev.preventDefault();
     let data = ev.dataTransfer.getData("text");
     let element = document.getElementById(data)
     let length = element.dataset.length;
     let direction = element.dataset.direction;
     if(ev.target != element) {
-        console.log("target e diferit de elementul tras");
-        
         ev.target.appendChild(element);
         addObjectAndAdjacent(x, y, length, direction, shipsArray)
         reRenderPositioning();
