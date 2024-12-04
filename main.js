@@ -3,7 +3,6 @@ import { computerRound, createBoard, createLand, createPositioningBoard, deleteP
 import { computerPlayRound, computerPositionShips } from "./computer.js";
 
 const firstName = document.getElementById("first-player-input");
-const secondName = document.getElementById("second-player-input")
 
 firstName.addEventListener("input", () => {
     checkName();
@@ -22,13 +21,6 @@ showInputsAndStartButton();
 
 
 function createPlayers(name1, shipsArray1, name2, shipsArray2) {
-    console.log("suntem in createPlayers");
-    
-    console.log(name1);
-    console.log(shipsArray1);
-    console.log(name2);
-    console.log(shipsArray2);
-    
     let player1 = new Player(name1, "real");
     for(let i = 0; i < 10; i++) {
         for(let j = 0; j < 10; j++) {
@@ -45,7 +37,6 @@ function createPlayers(name1, shipsArray1, name2, shipsArray2) {
     } else {
         player2 = new Player(name2, "real");
     }
-    console.log(player2.type);
     for(let i = 0; i < 10; i++) {
         for(let j = 0; j < 10; j++) {
             if(typeof shipsArray2[i][j] === "object") {
@@ -98,7 +89,6 @@ export function launchAttack(player, x, y) {
     }
     if(!resultOfAttack) {
         getCurrentPlayerRound().removeMove();
-        console.log(player);
         swapRounds();
     }
     roundEnded();
@@ -136,14 +126,6 @@ export function getEnemyBoard() {
     }
 }
 
-// export function getEnemyMiniature() {
-//     if(currentPlayerRound == currentPlayers[0]) {
-//         return gameBoards[0]
-//     } else {
-//         return gameBoards[1];
-//     }
-// }
-
 export function endPositioningAndStartGame(finalArr) {    
     deletePositioningBoard();
     let name1 = finalArr[0][0];
@@ -159,7 +141,6 @@ export function endPositioningAndStartGame(finalArr) {
     let player1 = players[0];
     let player2 = players[1];
     let myTable = createLand();
-    // createEndScreen();
     setTimeout(() => {
         gameBoards = createBoard(player1, player2)
         disableBoard(gameBoards[0])
@@ -186,24 +167,8 @@ function addHoverEvent(myTable, toggler) {
     })
 }
 
-// export function initialise(name1, name2) {
-//     let players = createPlayers(name1, name2);
-//     let player1 = players[0];
-//     let player2 = players[1];
-//     let myTable = createTable();
-//     // createEndScreen();
-//     let boards = createBoard(player1, player2)
-//     disableBoard(boards[0])
-//     disableBoard(boards[1])
-
-//     addHoverAndClickEvent(myTable, document.getElementById("hide"), boards)
-    
-//     startGame(player1, boards)
-// }
-
 export function roundEnded() {
     let myPlayers = getCurrentPlayers();
-    console.log(myPlayers);
     let res = gameEnded(myPlayers[0], myPlayers[1]);
     if(res == false) {
         switchBoards();
@@ -211,11 +176,6 @@ export function roundEnded() {
             computerRound(gameBoards[0]);
             computerPlayRound(myPlayers[1], myPlayers[0]);
         }
-        // if(myPlayers[0].moves == 0) {
-        //     if(myPlayers[1].type == "computer") {
-        //         
-        //     }
-
     } else {
         stopGame(res[1]);
     }
@@ -229,15 +189,4 @@ function gameEnded(player1, player2) {
         return [true, player1];
     }
     return false;
-}
-
-function addShipsToArray() {
-    // user must have these counts:
-    // 1 ship with 4 length
-    // 2 ships with 3 length
-    // 3 ships with 2 length
-    // 4 ships with 1 length
-    // when all are placed, user can confirm the board placement
-    //also, ships must have 1 empty space between them, diagonal, vertical or horizontal
-    
 }
